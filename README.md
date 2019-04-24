@@ -1,6 +1,6 @@
 # Projeto Jogo da Memoria
 
-    O jogo consiste em achar todos os pares de carta no menor tempo possivel.
+    O jogo consiste em achar todos os pares de cartas no menor tempo possivel.
 
 ## Construção
 
