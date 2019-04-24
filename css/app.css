@@ -1,104 +1,57 @@
 html {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: inherit;
+	box-sizing: inherit;
 }
 
 html,
 body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+	background: white url(../img/geometry.png);
+	font-family: Coda, cursive;
+}
+
+h1 {
+    font-weight: 300;
+}
+
+.show {
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     flex-direction: column;
 }
 
-h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-}
-
-/*
- * Styles for the deck of cards
- */
-
-.deck {
-    width: 660px;
-    min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    padding: 32px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 0 3em;
-}
-
-.deck .card {
-    height: 125px;
-    width: 125px;
-    background: #2e3d49;
-    font-size: 0;
-    color: #ffffff;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
-}
-
-.deck .card.open {
-    transform: rotateY(0);
-    background: #02b3e4;
-    cursor: default;
-}
-
-.deck .card.show {
-    font-size: 33px;
-}
-
-.deck .card.match {
-    cursor: default;
-    background: #02ccba;
-    font-size: 33px;
-}
-
-/*
- * Styles for the Score Panel
- */
+/* Painel de informação do jogo */
 
 .score-panel {
-    text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
+	display: flex;
+	flex-flow: row wrap;
+	text-align: left;
+	margin-bottom: 10px;
 }
 
-.score-panel .stars {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0;
+.stars {
+	padding: 0;
 }
 
-.score-panel .stars li {
+.stars li {
     list-style: none;
     display: inline-block;
 }
@@ -106,4 +59,147 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+.fa-star {
+    color: rgb(199, 188, 188);
+}
+
+.fa-star.shine {
+    color: #e9c80c;
+}
+
+.stars,
+.moves,
+.timer {
+	margin: 0 15px;
+}
+
+/* deck de cartas */
+
+.deck {
+	width: 660px;
+	min-height: 680px;
+	display: flex;
+	max-width: 100%;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	margin: 0 0 3em;
+	border-radius: 10px;
+	box-sizing: border-box;
+	background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+	box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.deck .card {
+	width: 100px;
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 0;
+	background: #2e3d49;
+	color: white;
+	cursor: pointer;
+	margin: 20px;
+	border-radius: 10px;
+	box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.deck .card.open {
+	transform: rotateY(0);
+	background: #02b3e4;
+	cursor: default;
+	-webkit-backface-visibility: visible !important;
+	backface-visibility: visible !important;
+}
+
+.deck .card.show {
+	font-size: 32px;
+}
+
+.deck .card.match {
+	cursor: default;
+	background: #02ccba;
+	font-size: 32px;
+	-webkit-backface-visibility: visible;
+	backface-visibility: visible;
+}
+
+.deck .card.unmatched {
+    backface-visibility: visible;
+	-webkit-backface-visibility: visible;
+	background: #bb2b4f;
+}
+
+.deck .card.disabled {
+	pointer-events: none;
+}
+
+/* Janela de conclusao do game */
+
+#parabens {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(0,0,0,0.7);
+	visibility: hidden;
+	opacity: 0;
+}
+
+#parabens .popup {
+	background: white;
+	margin: 20px;
+	padding: 40px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+#parabens h1 {
+	margin: 0;
+}
+
+#parabens .resultado {
+	margin: 40px 0;
+	font-size: 1.25rem;
+}
+
+/* butão de jogar novamente */
+
+#jogar-novamente {
+	background-color: #2e3d49;
+	font-size: 1.25rem;
+	color: white;
+	padding: 10px 20px;
+	border-radius: 10px;
+	border: none;
+}
+
+#jogar-novamente:hover {
+	background-color: #02ccba;
+	cursor: pointer;
+}
+
+/* Responsivo do game */
+
+@media only screen and (min-width: 700px) {
+
+    
+    .deck .card {
+        width: 125px;
+		height: 125px;
+		margin: 0;
+	}
+	
+    .deck {
+        padding: 40px;
+    }
 }
