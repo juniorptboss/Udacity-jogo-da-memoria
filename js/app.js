@@ -218,5 +218,6 @@ function closePopup() {
 	document.getElementById("jogar-novamente").addEventListener("click", function() {
 		popup.classList.remove("show");
 		startGame();
+		openedCards();
 	});
 }
